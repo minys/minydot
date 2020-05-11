@@ -1,0 +1,30 @@
+"
+" minydot vimrc
+"
+
+" Vundle configuration
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'Valloric/YouCompleteMe'
+call vundle#end()
+
+filetype plugin indent on
+
+syntax enable
+
+set background=dark
+set hlsearch
+set t_Co=256
+set tabstop=4
+set expandtab
+set softtabstop=4
+
+let g:airline_powerline_fonts = 1
+let g:solarized_termcolors=256
+
+colorscheme solarized

@@ -1,0 +1,5 @@
+#
+# minydot profile
+#
+
+[ -n "$BASH_VERSION" ] && source ${HOME}/.bashrc

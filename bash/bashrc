@@ -1,0 +1,52 @@
+#
+# minydot bashrc
+#
+
+prompt_command()
+{
+    local exit=$?
+
+    c_black="\[\033[0;30m\]"
+    c_blue="\[\033[0;34m\]"
+    c_brown="\[\033[0;33m\]"
+    c_cyan="\[\033[0;36m\]"
+    c_green="\[\033[0;32m\]"
+    c_red="\[\033[0;31m\]"
+    c_purple="\[\033[0;35m\]"
+    c_dark_grey="\[\033[1;30m\]"
+    c_light_blue="\[\033[1;34m\]"
+    c_light_cyan="\[\033[1;36m\]"
+    c_light_green="\[\033[1;32m\]"
+    c_light_grey="\[\033[0;37m\]"
+    c_light_cyan="\[\033[1;36m\]"
+    c_light_purple="\[\033[1;35m\]"
+    c_light_red="\[\033[1;31m\]"
+    c_no_color="\[\033[0m\]"
+
+    if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+        ssh_session="${HOSTNAME}.$(domainname) "
+    fi
+    if [ ${exit} -ne 0 ]; then
+        PS1=" ${ssh_session}${c_red}▶${c_no_color} "
+    else
+        PS1=" ${ssh_session}${c_green}▶${c_no_color} "
+    fi
+}
+
+shopt -s histappend
+shopt -s checkwinsize
+
+ulimit -c unlimited
+
+export EDITOR=vim
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export HISTFILE=${HOME}/.bash_history
+export HISTCONTROL=ignoreboth
+export HISTFILESIZE=50000
+export HISTSIZE=${HISTFILESIZE}
+export PAGER='less -R'
+export PROMPT_COMMAND=prompt_command
+export VISUAL=${EDITOR}
+
+[ -f ~/.bash_aliases ] && source ${HOME}/.bash_aliases
+[ -f ~/.bash.git-completion ] && source ${HOME}/.bash.git-completion
